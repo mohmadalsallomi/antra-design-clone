@@ -62,7 +62,7 @@ const services = [
 ];
 
 export default function ServicesGrid() {
-  const [hoveredId, setHoveredId] = useState(null);
+  const [hoveredId, setHoveredId] = useState<number | null>(null);
 
   return (
     <section id="services" className="py-20 lg:py-32 bg-background">
