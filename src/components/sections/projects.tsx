@@ -72,52 +72,45 @@ const projectsData: Project[] = [
 
 const ProjectCard = ({ project }: { project: Project }) => {
   return (
-    <article className="break-inside-avoid">
-      <div className="group relative overflow-hidden rounded-3xl shadow-[0_8px_32px_rgba(0,0,0,0.12)]">
-        <Link href={project.url}>
-          <Image
-            src={project.image}
-            alt={project.title}
-            width={768}
-            height={540}
-            className="w-full h-auto object-cover transition-transform duration-300 ease-in-out group-hover:scale-105"
-          />
-        </Link>
+    <article className="group relative overflow-hidden rounded-2xl h-full">
+      <Link href={project.url}>
+        <Image
+          src={project.image}
+          alt={project.title}
+          width={768}
+          height={540}
+          className="w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-105"
+        />
+      </Link>
 
-        {/* always-visible category pills */}
-        <div className="absolute left-4 top-4 z-10 flex flex-wrap gap-2">
-          {project.categories.map((category, index) => (
-            <span
-              key={index}
-              className="inline-block rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-xs font-semibold text-white backdrop-blur-sm"
-            >
-              {category.toUpperCase()}
-            </span>
-          ))}
-        </div>
-
-        {/* hover gradient + view button */}
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100" />
-        <Link
-          href={project.url}
-          className="absolute bottom-4 right-4 z-10 flex h-14 w-14 items-center justify-center rounded-full bg-primary text-primary-foreground opacity-0 transition-all duration-300 ease-in-out hover:scale-110 group-hover:opacity-100"
-          aria-label={`View project: ${project.title}`}
-        >
-          <ArrowUpRight className="h-6 w-6" />
-        </Link>
+      {/* Category pills */}
+      <div className="absolute left-4 top-4 z-10 flex flex-wrap gap-2">
+        {project.categories.map((category, index) => (
+          <span
+            key={index}
+            className="inline-block rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-xs font-semibold text-white backdrop-blur-sm"
+          >
+            {category.toUpperCase()}
+          </span>
+        ))}
       </div>
-      <div className="mt-5">
-        <h3 className="text-3xl font-semibold text-foreground">
+
+      {/* Project info overlay */}
+      <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
+        <h3 className="text-2xl lg:text-3xl font-semibold text-white mb-2">
           <Link href={project.url} className="transition-colors duration-300 hover:text-primary">
             {project.title}
           </Link>
         </h3>
-        <div className="mt-2 flex items-center text-sm text-muted-foreground/80">
+        <div className="flex items-center text-sm text-white/80">
           <span>{project.location}</span>
           <span className="mx-2">•</span>
           <span>{project.year}</span>
         </div>
       </div>
+
+      {/* Hover overlay */}
+      <div className="absolute inset-0 bg-black/20 opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100" />
     </article>
   );
 };
@@ -125,23 +118,49 @@ const ProjectCard = ({ project }: { project: Project }) => {
 const ProjectsSection = () => {
   return (
     <section className="bg-background text-foreground py-[120px]">
-      <div className="container mx-auto px-5">
-        <div className="text-center max-w-4xl mx-auto mb-20">
-          <span className="text-sm font-medium tracking-widest text-primary uppercase">
-            Our Projects
-          </span>
-          <h2 className="text-4xl lg:text-[48px] lg:leading-[1.2] font-semibold text-foreground mt-4">
-            Creative projects that define our style
-          </h2>
-          <p className="text-base text-muted-foreground mt-6 max-w-3xl mx-auto">
-            Our portfolio showcases a diverse range of projects, from beautifully crafted residential spaces functional and stylish commercial interiors
-          </p>
+      <div className="container mx-auto px-5 max-w-[1400px]">
+        <div className="grid lg:grid-cols-2 gap-12 items-start mb-20">
+          <div>
+            <span className="text-sm font-semibold tracking-wider text-primary uppercase">
+              • OUR PROJECTS
+            </span>
+            <h2 className="text-[48px] lg:text-[56px] font-semibold leading-[1.1] text-foreground mt-6">
+              Creative <span className="text-primary">Projects That Define</span> Our Style
+            </h2>
+          </div>
+          <div className="lg:pt-12">
+            <p className="text-lg text-muted-foreground leading-[1.6]">
+              Our portfolio showcases a diverse range of projects, from beautifully crafted residential spaces functional and stylish commercial interiors
+            </p>
+          </div>
         </div>
 
-        <div className="columns-1 md:columns-2 xl:columns-3 gap-10 space-y-10">
-          {projectsData.map((project) => (
-            <ProjectCard key={project.id} project={project} />
-          ))}
+        {/* Projects Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 auto-rows-max">
+          {/* Project 1 - Large */}
+          <div className="lg:col-span-2 lg:row-span-2">
+            <ProjectCard project={projectsData[4]} />
+          </div>
+          
+          {/* Project 2 - Medium */}
+          <div className="lg:col-span-2">
+            <ProjectCard project={projectsData[5]} />
+          </div>
+          
+          {/* Project 3 - Small */}
+          <div className="lg:col-span-1 lg:row-span-2">
+            <ProjectCard project={projectsData[2]} />
+          </div>
+          
+          {/* Project 4 - Medium */}
+          <div className="lg:col-span-1">
+            <ProjectCard project={projectsData[0]} />
+          </div>
+          
+          {/* Project 5 - Medium */}
+          <div className="lg:col-span-1">
+            <ProjectCard project={projectsData[1]} />
+          </div>
         </div>
       </div>
     </section>
