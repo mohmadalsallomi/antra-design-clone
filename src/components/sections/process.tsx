@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import Link from 'next/link';
 
 const processSteps = [
   {
@@ -30,75 +29,73 @@ const processSteps = [
 
 const ProcessSection = () => {
   return (
-    <section className="bg-background py-[120px]">
-      <div className="container mx-auto px-5 max-w-[1200px]">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+    <section className="bg-background py-[120px] relative overflow-hidden">
+      <div className="container mx-auto px-5 max-w-[1400px]">
+        {/* Header Section */}
+        <div className="grid lg:grid-cols-2 gap-12 items-start mb-24">
           <div>
-            <p className="text-primary font-semibold tracking-wider uppercase">How We Work</p>
-            <h2 className="text-[48px] font-semibold mt-4 leading-[1.2]">
-              Description Architecture process for exceptional results.
+            <p className="text-primary font-semibold tracking-wider uppercase text-sm mb-6">• HOW WE WORK</p>
+            <h2 className="text-[48px] lg:text-[56px] font-semibold leading-[1.1] text-white">
+              Description <span className="text-primary">Architecture Process</span> For Exceptional Results.
             </h2>
-            <p className="text-muted-foreground mt-6 text-base leading-[1.6]">
+          </div>
+          <div className="lg:pt-12">
+            <p className="text-muted-foreground text-lg leading-[1.6] mb-6">
               Our process is alive – adapting, refining, and growing with your vision. Always.
             </p>
-            <p className="text-muted-foreground mt-4 text-base leading-[1.6]">
+            <p className="text-muted-foreground text-lg leading-[1.6]">
               Like artists with a blank canvas, we transform rooms into living works of art.
             </p>
           </div>
-          <div className="hidden md:flex justify-end">
-            <Image 
-              src="https://demo2.themelexus.com/antra/wp-content/uploads/2025/06/h1-banner02.png" 
-              alt="Antra decorative text" 
-              width={276} 
-              height={217}
-              className="object-contain"
-            />
+        </div>
+
+        {/* Process Steps Layout */}
+        <div className="relative mt-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-20 lg:gap-x-24 lg:gap-y-24">
+            {processSteps.map((step, index) => (
+              <div key={step.number} className="relative group">
+                {/* Large background number */}
+                <span className="absolute text-[160px] lg:text-[200px] font-bold text-muted-foreground/8 -top-8 -right-4 select-none z-0 leading-none">
+                  {step.number}
+                </span>
+                
+                {/* Card Content */}
+                <div className="relative z-10">
+                  {/* Image */}
+                  <div className="mb-6 overflow-hidden rounded-xl shadow-lg">
+                    <Image 
+                      src={step.imageUrl} 
+                      alt={step.title} 
+                      width={450} 
+                      height={280} 
+                      className="w-full h-[280px] object-cover transition-transform duration-500 group-hover:scale-105" 
+                    />
+                  </div>
+                  
+                  {/* Content */}
+                  <div className="space-y-3">
+                    <h3 className="text-[24px] lg:text-[28px] font-semibold text-white leading-[1.2]">
+                      <span className="text-primary">{step.number}.</span> {step.title}
+                    </h3>
+                    <p className="text-muted-foreground text-[15px] leading-[1.6] max-w-md">
+                      {step.description}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 
-        <div className="mt-32 space-y-32">
-          {processSteps.map((step, index) => (
-            <div 
-              key={step.number} 
-              className={[
-                "flex flex-col lg:flex-row gap-10 lg:gap-20 items-center",
-                index % 2 !== 0 ? "lg:flex-row-reverse" : ""
-              ].join(" ")}
-            >
-              <div className="lg:w-[55%] w-full">
-                <Image 
-                  src={step.imageUrl} 
-                  alt={step.title} 
-                  width={620} 
-                  height={414} 
-                  className="rounded-lg object-cover w-full h-auto" 
-                />
-              </div>
-              <div className="lg:w-[45%] w-full relative">
-                <span className="absolute text-[200px] font-bold text-border opacity-10 -z-10 -top-24 left-0 select-none">
-                  {step.number}
-                </span>
-                <h3 className="text-[32px] font-medium text-white mb-4 leading-[1.3]">
-                  {step.number}. {step.title}
-                </h3>
-                <p className="text-muted-foreground text-base leading-[1.6] max-w-md">
-                  {step.description}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <div className="text-center mt-[120px]">
-          <h2 className="text-[48px] font-semibold leading-[1.2] text-white">
-            We’ve been working hard to impress you.
-          </h2>
-          <Link 
-            href="https://demo2.themelexus.com/antra/contact-us/" 
-            className="inline-block mt-8 bg-primary text-primary-foreground py-4 px-8 rounded-[24px] text-base font-medium hover:scale-105 transition-transform duration-300 ease-in-out"
-          >
-            Start your’s today
-          </Link>
+        {/* Decorative building images on the right */}
+        <div className="hidden xl:block absolute top-0 right-0 w-[400px] h-full opacity-20">
+          <Image 
+            src="https://demo2.themelexus.com/antra/wp-content/uploads/2025/06/h1-banner02.png" 
+            alt="Decorative architecture" 
+            width={400} 
+            height={600}
+            className="object-contain h-full"
+          />
         </div>
       </div>
     </section>
