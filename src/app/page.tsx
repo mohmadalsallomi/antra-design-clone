@@ -1,5 +1,7 @@
 import Header from '@/components/sections/header';
 import HeroSection from '@/components/sections/hero';
+import AboutHeroSection from '@/components/sections/about-hero';
+import ServicesHeroSection from '@/components/sections/services-hero';
 import StatsBanner from '@/components/sections/stats-banner';
 import AboutSection from '@/components/sections/about';
 import ServicesSection from '@/components/sections/services';
