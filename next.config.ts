@@ -1,7 +1,8 @@
 import type { NextConfig } from "next";
 import path from "node:path";
 
-const LOADER = path.resolve(__dirname, 'src/visual-edits/component-tagger-loader.js');
+// Fix for Vercel path resolution
+const LOADER = path.resolve(process.cwd(), 'src/visual-edits/component-tagger-loader.js');
 
 const nextConfig: NextConfig = {
   images: {
@@ -16,14 +17,18 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  outputFileTracingRoot: path.resolve(__dirname, '../../'),
-  turbopack: {
-    rules: {
-      "*.{jsx,tsx}": {
-        loaders: [LOADER]
+  // Fix for Vercel deployment paths
+  outputFileTracingRoot: path.resolve(process.cwd()),
+  // Only add turbopack rules if loader exists (avoid Vercel build issues)
+  ...(process.env.NODE_ENV === 'development' && {
+    turbopack: {
+      rules: {
+        "*.{jsx,tsx}": {
+          loaders: [LOADER]
+        }
       }
     }
-  }
+  })
 };
 
 export default nextConfig;

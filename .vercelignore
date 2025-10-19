@@ -1,0 +1,20 @@
+# Dependencies
+node_modules
+
+# Development files
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Build files that Vercel handles automatically
+.next/cache
+.git
+
+# IDE files
+.vscode
+.idea
+
+# OS files
+.DS_Store
+Thumbs.db
