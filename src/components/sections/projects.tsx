@@ -84,11 +84,11 @@ const ProjectCard = ({ project }: { project: Project }) => {
       </Link>
 
       {/* Category pills */}
-      <div className="absolute left-4 top-4 z-10 flex flex-wrap gap-2">
+      <div className="absolute left-3 top-3 z-10 flex flex-wrap gap-1.5">
         {project.categories.map((category, index) => (
           <span
             key={index}
-            className="inline-block rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-xs font-semibold text-white backdrop-blur-sm"
+            className="inline-block rounded-full border border-white/20 bg-white/10 px-2.5 py-1 text-xs font-semibold text-white backdrop-blur-sm"
           >
             {category.toUpperCase()}
           </span>
@@ -96,15 +96,15 @@ const ProjectCard = ({ project }: { project: Project }) => {
       </div>
 
       {/* Project info overlay */}
-      <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
-        <h3 className="text-2xl lg:text-3xl font-semibold text-white mb-2">
+      <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
+        <h3 className="text-lg lg:text-xl font-semibold text-white mb-1">
           <Link href={project.url} className="transition-colors duration-300 hover:text-primary">
             {project.title}
           </Link>
         </h3>
-        <div className="flex items-center text-sm text-white/80">
+        <div className="flex items-center text-xs text-white/80">
           <span>{project.location}</span>
-          <span className="mx-2">•</span>
+          <span className="mx-1">•</span>
           <span>{project.year}</span>
         </div>
       </div>
@@ -117,26 +117,26 @@ const ProjectCard = ({ project }: { project: Project }) => {
 
 const ProjectsSection = () => {
   return (
-    <section className="bg-background text-foreground py-[120px]">
-      <div className="container mx-auto px-5 max-w-[1400px]">
-        <div className="grid lg:grid-cols-2 gap-12 items-start mb-20">
+    <section className="bg-background text-foreground py-16 lg:py-20">
+      <div className="container mx-auto px-5 max-w-[1200px]">
+        <div className="grid lg:grid-cols-2 gap-8 items-start mb-12">
           <div>
-            <span className="text-sm font-semibold tracking-wider text-primary uppercase">
+            <span className="text-xs font-semibold tracking-wider text-primary uppercase">
               • OUR PROJECTS
             </span>
-            <h2 className="text-[48px] lg:text-[56px] font-semibold leading-[1.1] text-foreground mt-6">
+            <h2 className="text-3xl lg:text-4xl font-semibold leading-[1.1] text-foreground mt-4">
               Creative <span className="text-primary">Projects That Define</span> Our Style
             </h2>
           </div>
-          <div className="lg:pt-12">
-            <p className="text-lg text-muted-foreground leading-[1.6]">
+          <div className="lg:pt-8">
+            <p className="text-base text-muted-foreground leading-[1.6]">
               Our portfolio showcases a diverse range of projects, from beautifully crafted residential spaces functional and stylish commercial interiors
             </p>
           </div>
         </div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 auto-rows-max">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 auto-rows-max">
           {/* Project 1 - Large */}
           <div className="lg:col-span-2 lg:row-span-2">
             <ProjectCard project={projectsData[4]} />
